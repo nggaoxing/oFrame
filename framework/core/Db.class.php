@@ -195,6 +195,29 @@ class Db{
 		}
 	}
 	
+	/**
+	 * 开启事物(暂不完善，不使用)
+	 * @return [type] [description]
+	 */
+	public function startTrans(){
+		$this->pdo->beginTransaction();
+	}
+
+	/**
+	 * 事物提交(暂不完善，不使用)
+	 * @return [type] [description]
+	 */
+	public function commit(){
+		$this->pdo->commit();
+	}
+
+	/**
+	 * 事物回滚(暂不完善，不使用)
+	 * @return [type] [description]
+	 */
+	public function rollback(){
+		$this->pdo->rollBack();
+	}
 	
 } 
 

@@ -19,4 +19,7 @@ return [
 	'right_delimiter'	=>	'}>',	//右标签
 	'template_dir'	=> ROOT.'view/',	//html目录
 	'compile_dir'	=>	ROOT.'runtime/cache/',	//编译文件目录
+
+	/*******字符串过滤*******/
+	'default_filter'	=>	'htmlspecialchars',		//过滤方法
 ];

@@ -12,6 +12,9 @@ class Request{
 	protected $module;  	//module
 	protected $controller; 	//controller
 	protected $action;  	//action
+	protected $param_get=array();		//get参数
+	protected $param_post=array();		//post参数
+	protected $param;		//参数
 
 	//构造函数
 	protected  function __construct(){
@@ -45,6 +48,17 @@ class Request{
 	}
 
 	/**
+	 * 获取传递的参数
+	 * @return [type] [description]
+	 */
+	public function param(){
+		//获取post参数
+		$this->param_post = $this->input('post.');
+		//返回
+		return ['get'=>$this->param_get,'post'=>$this->param_post];
+	}
+
+	/**
 	 * 获取pathinfo
 	 * @return [type] [description]
 	 */
@@ -72,7 +86,7 @@ class Request{
 					//参数
 					foreach ($arr_path as $k => $v) {
 						if(isset($arr_path[$k]) && isset($arr_path[$k+1])){
-							$_GET[$v] = $arr_path[$k+1];
+							$this->param_get[$v] = $arr_path[$k+1];
 							unset($arr_path[$k]);
 							unset($arr_path[$k+1]);
 						}
@@ -82,6 +96,109 @@ class Request{
 			}
 		}
 		return $this->path_info;
+	}
+
+	/**
+	 * 获取提交的数据
+	 * @param  [type] $name    名称
+	 * @param  string $default 默认值
+	 * @param  [type] $filter  过滤方法
+	 * @return [type]
+	 */
+	public function input($name="",$default=null,$filter=''){
+		//	先判断传递的参数是什么
+		//  / 表示获取的结果设定（/a表示是数据）
+		$p = "";
+		if(strpos($name,"/")){
+			list($p,$type) = explode("/",$name,2);
+			$method = "post";
+		}elseif(strpos($name,".")){ //  post.  get. 表示获取整个post，get
+			if(substr($name,-1) == '.'){
+				$method = rtrim($name,'.');
+			}else{
+				//  post.name  get.name 表示获取post，get的name的值
+				list($method,$p) = explode(".",$name,2);
+			}
+		}elseif($name == ""){
+			$method = "get,post";
+		}else{
+			//  name 表示获取当前的name的值
+			$method = "param";
+			$p = $name;
+		}
+		//根据方法获取数据
+		switch ($method) {
+			case 'get':
+				if(!empty($p)){
+					$data = isset($this->param_get[$p]) ? $this->param_get[$p] : ''; //获取单个数据
+				}else{
+					$data = $this->param_get; //获取整个
+				}
+				break;
+			case 'post':
+				if(!empty($p)){
+					$data = isset($_POST[$p]) ? $_POST[$p] : ''; //获取单个数据
+				}else{
+					$data = $_POST; //获取整个
+					$this->param_post = $_POST; //获取整个
+				}
+				break;
+			case 'param':
+				$param_get = isset($this->param_get[$name]) ? $this->param_get[$name] : "";
+				$data = isset($_POST[$p]) ? $_POST[$p] : $param_get; //获取单个数据
+				break;
+			case 'get,post':
+				$data = array_merge($this->param_get,$_POST);
+				break;
+			default:
+				return null;
+				break;
+		}
+
+		//根据$type组合数据
+		if(!empty($type)){
+        	switch(strtolower($type)){
+        		case 'a':	// 数组
+        			$data 	=	(array)$data;
+        			break;
+        		case 'd':	// 数字
+        		 	$data 	=	(int)$data;
+        		 	break;
+        		case 'f':	// 浮点
+        			$data 	=	(float)$data;
+        			break;
+        		case 'b':	// 布尔
+        			$data 	=	(boolean)$data;
+        			break;
+                default:
+        	}
+        }
+
+        //根据参数过滤字符串
+        $filter = !empty($filter) ? $filter : Config::get('default_filter');
+        if($filter){
+        	//进行过滤
+        	$data = $this->filter($data,$filter);
+        }
+        //返回结果
+		return !empty($data) ? $data : $default;
+	}
+
+	/**
+	 * 字符串的过滤
+	 * @param  [type] $data   数据
+	 * @param  [type] $filter 过滤方法
+	 * @return data
+	 */
+	private function filter($data,$filter){
+		//把过量函数转为数组
+		$filters = explode(',',$filter);
+		//循环过滤
+		foreach ($filters as $k => $filter) {
+			$data = \array_map_recursive($filter,$data);
+		}
+		//返回结果
+		return $data;
 	}
 
 	/**
@@ -113,6 +230,7 @@ class Request{
 			return $this->action;
 		}
 	}
+
 
 }
 

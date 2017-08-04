@@ -23,10 +23,14 @@ define('load_func_file',load_func_path."function.php");			//用户函数文件
 define('func_file',func_path."function.php");			//系统函数文件
 
 //加载模板类
-require frame_path."org\Libs\Smarty.class.php";
+require_once frame_path."org\Libs\Smarty.class.php";
+
+//加载方法
+require_once func_file;
+require_once load_func_file;
 
 //运行
-require core_path."App.class.php";
+require_once core_path."App.class.php";
 App::run();
 
 

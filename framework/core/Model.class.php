@@ -2,6 +2,7 @@
 namespace core;
 use core\Config;
 use core\Db;
+use core\Request;
 
 //基础模型类
 class Model{
@@ -10,7 +11,7 @@ class Model{
     //数据库对象池
 	private   $_db				=	array();
     // 主键名称
-    protected $pk               =   'id';
+    protected $pk               =   '';
     // 数据表前缀
     protected $tablePrefix      =   '';
     //数据库配置
@@ -25,6 +26,7 @@ class Model{
     protected $lastId			=	'';
     // 字段信息
     protected $fields           =   array();
+    protected $tableFields           =   array();
     // 数据信息(用于增加和修改)
     protected $data             =   array();
     // 查询表达式参数
@@ -49,8 +51,10 @@ class Model{
         $this->_initialize();
 
         //获取表名
-        if(!empty($tablename)){
-        	$this->tableName = $tablename;
+        if(empty($tablename) && empty($this->tableName)){
+        	throw new \Exception("未传递表名称", 1);   
+        }elseif(!empty($tablename)){
+            $this->tableName = $tablename;
         }
         //表前缀
         if(!empty($tablePrefix)){
@@ -63,10 +67,29 @@ class Model{
         	$this->connection = $connection;
         }else{
         	$this->connection = Config::db();
-        }  
+        } 
 
         //建立数据库连接
-        return $this->conn_db();
+        $this->conn_db();
+        //获取主键
+        $this->getDbFields();
+        $this->pk = empty($this->pk) ? $this-> getTablePk($this->fields): $this->pk;
+
+        //返回连接
+        return  $this->db;
+    }
+
+    /**
+     * 获取主键
+     * @param  [type] $f 字段信息
+     * @return [type]
+     */
+    private function getTablePk($f){
+        foreach ($f as $key => $val) {   
+            if($val['primary'] == true){
+                return $key;
+            }
+        }
     }
 
     /**
@@ -117,15 +140,13 @@ class Model{
     	if(empty($field)){
     		throw new \Exception("字段信息不能为空", 1);
     	}
-		$fields = $this->getDbFields();
     	if($field=="*"){	//全部
-    		$files = implode(',',$fields);
+    		$files = implode(',',$this->tableFields);
     	}else{
     		//表示存在字段(验证)
     		$f = explode(",",$field);
     		foreach ($f as $key => $val) {
-    			if(!in_array($val,$fields)){
-    				echo '错误内容：' . $val."字段不存在";
+    			if(!in_array($val,$this->tableFields)){
     				throw new \Exception($val."字段不存在", 1);
     			}
     		}
@@ -146,11 +167,15 @@ class Model{
     	}
     	//判断是不是字符串
     	if(is_string($where) && '' != $where){
-    		$this->options['where']  .="and ". $this->db->escapeString($where)." ";
+            throw new \Exception("请使用数组传递条件", 1);
+    		//$this->options['where']  .="and ". $this->db->escapeString($where)." ";
     	}
     	//是数组
     	if(is_array($where)){
     		foreach ($where as $k => $v) {
+                if(!in_array($k,$this->tableFields)){
+                    throw new \Exception("条件".$k."字段不存在", 1);
+                }
     			@$this->options['where'] .= "and ". $k . $v[0] .$this->db->escapeString($v[1])." ";
     		}
     	}
@@ -169,9 +194,7 @@ class Model{
     	//判断是不是字符串
     	if(is_string($group) && '' != $group){
     		//判断字段是否存在
-    		$fields = $this->getDbFields();
-			if(!in_array($group,$fields)){
-				echo '错误内容：分组' . $group."字段不存在";
+			if(!in_array($group,$this->tableFields)){
 				throw new \Exception("分组".$group."字段不存在", 1);
 			}
     		$this->options['group'] = $group;
@@ -191,10 +214,8 @@ class Model{
     	//判断是不是字符串
     	if(is_string($order) && '' != $order){
     		//判断字段是否存在
-    		$fields = $this->getDbFields();
     		$o = explode(" ",$order)[0];
-			if(!in_array($o,$fields)){
-				echo '错误内容：排序' . $o."字段不存在";
+			if(!in_array($o,$this->tableFields)){
 				throw new \Exception("排序".$o."字段不存在", 1);
 			}
     		$this->options['order'] = $order;
@@ -231,8 +252,6 @@ class Model{
         $options = $this->_parseOptions($options);
     	//组装表达式
     	$sql = $this->createSql($options,'find');
-
-    var_dump($sql);
     	//执行语句
     	$this->data = $this->db->fetchRow($sql);
     	return $this->data;
@@ -250,8 +269,6 @@ class Model{
         $options = $this->_parseOptions($options);
     	//组装表达式
     	$sql = $this->createSql($options,'select');
-
-    var_dump($sql);
     	//执行语句
     	$this->data = $this->db->fetchAll($sql);
     	return $this->data;
@@ -292,6 +309,7 @@ class Model{
     	}
   		//返回结果
   		$this->sql = $sql;
+
   		return $sql;
     }
 
@@ -319,12 +337,17 @@ class Model{
     			break;
     		case 'update':
     			$sql .= "UPDATE ".$options['tableName']." SET ";
+                //先删除主键条件
+                if(isset($data[$this->pk])){
+                    unset($data[$this->pk]);
+                }
     			foreach ($data as $k => $v) {
     				$value .= "{$k} = '{$v}', ";
     			}
     			$sql .= trim($value,", ");
     			//条件where
 		    	if(isset($options['where'])){
+
 		    		$sql .= " WHERE ".ltrim($options['where'],'and ');
 		    	}
     			break;
@@ -332,7 +355,6 @@ class Model{
     			# code...
     			break;
     	}
-    	
   		//返回结果
   		$this->sql = $sql;
   		return $sql;
@@ -355,7 +377,7 @@ class Model{
     	}
     	//判断是否选在字段
     	if(!isset($options['field'])){
-    		$options['field'] = implode(",",$this->getDbFields());
+    		$options['field'] = implode(",",$this->tableFields);
     	}
     	//剩下的条件等扩展
     	
@@ -373,7 +395,8 @@ class Model{
     	$tableName = $this->getTableName();
     	//获取字段
     	$fields = $this->db->getfields($tableName);
-    	$this->fields = $fields;
+        $this->fields = $fields;
+    	$this->tableFields = array_keys($fields);
     	//返回信息
     	return  $fields ? array_keys($fields) : false;
     }
@@ -392,7 +415,6 @@ class Model{
 
     /**
      * 获取数据对象的值
-     * @access public
      * @param string $name 名称
      * @return mixed
      */
@@ -402,7 +424,6 @@ class Model{
 
     /**
      * 设置数据对象的值
-     * @access public
      * @param string $name 名称
      * @param mixed $value 值
      * @return void
@@ -414,7 +435,6 @@ class Model{
 
     /**
      * 检测数据对象的值
-     * @access public
      * @param string $name 名称
      * @return boolean
      */
@@ -424,12 +444,23 @@ class Model{
 
     /**
      * 销毁数据对象的值
-     * @access public
      * @param string $name 名称
      * @return void
      */
     public function __unset($name) {
         unset($this->data[$name]);
+    }
+
+    /**
+     * 设置主键
+     * @param string $name 名称
+     * @return void
+     */
+    public function setPk($val) {
+        $this->pk = $val;
+    }
+    public function getPk() {
+        return $this->pk;
     }
 
     /**
@@ -452,11 +483,9 @@ class Model{
     	}
     	//判断存在不存在
     	$field  =  trim($field);
-    	$fields = $this->getDbFields();
     	$f = explode(",",$field);
 		foreach ($f as $key => $val) {
-			if(!in_array($val,$fields)){
-				echo '错误内容：' . $val."字段不存在";
+			if(!in_array($val,$this->tableFields)){
 				throw new \Exception($val."字段不存在", 1);
 			}
 		}
@@ -509,8 +538,6 @@ class Model{
         
     	//组装表达式
     	$sql = $this->createSaveSql('insert',$data,$options);
-
-    var_dump($sql);
     	//执行语句
     	$this->lastId = $this->db->affectRow($sql);
     	return $this->lastId;
@@ -533,18 +560,28 @@ class Model{
     			return false;
     		}
     	}
-    	//分析表达式
-        $op = $this->_parseOptions($options);
-        //判断主键值或者where条件是否存在
-        // if(){
 
-        // }
+        //判断主键值或者where条件是否存在
+
+        if(!isset($op['where']) && !array_key_exists($this->pk,$data) && empty($options)){
+        	throw new \Exception("缺少必要条件！！", 1);
+        }
     	//数据的过滤(字段筛选和字符串过滤)
-        
+        $data = $this->create($data);
+        //当没有传递条件是判断是否存在主键条件
+        if(array_key_exists($this->pk,$data) && empty($options) && !isset($op['where'])){
+            $this->where([$this->pk=>['=',$data[$this->pk]]]);
+        }elseif(!array_key_exists($this->pk,$data) && !empty($options) && !isset($op['where'])){
+            if(array_key_exists($this->pk,$options)){
+                $this->where($options);
+            }else{
+                throw new \Exception("缺少必要条件！！", 1);
+            }
+        }  
+         //分析表达式
+        $op = $this->_parseOptions($options);
     	//组装表达式
     	$sql = $this->createSaveSql('update',$data,$op);
-
-    var_dump($sql);
     	//执行语句
     	return $this->db->affectRow($sql);
     }
@@ -557,5 +594,111 @@ class Model{
     	 return isset($this->lastId) ? $this->lastId : null;
     }
 
+    /**
+     * 数据的过滤
+     * @return [type] 
+     */
+    public function create($data=""){
+        //没有值传递默认post
+        if(empty($data)){
+            $data = Request::instance()->input('post.'); 
+        }elseif(is_object($data)){
+            //传入的是对象,获取属性
+            $data   =   get_object_vars($data);
+        }
+        // 如果现在还没数据或者数据不是数组,直接返回错误
+        if(empty($data) || !is_array($data)) {
+            throw new \Exception("数据有误，请确认！", 1);
+            return false;
+        }
+        //检查字段映射，防止过滤了应该存在的数据
+        $data = $this->setFieldMap($data);
 
+        //检测字段是否存在，不存在的去掉
+        //1.用户自己传递了field
+        if(isset($this->options['field'])){
+            $fields = explode(",",$this->options['field']);
+            unset($this->options['field']);//删除，不能影响别的查询
+        }else{  //还有插入是字段，查询是字段的设置，暂时没考虑
+            $fields = $this->tableFields;
+        }
+        //这里还有一个表单令牌验证
+        // do.....
+        //存在字段就开始过滤
+        if(isset($fields)) {
+            foreach ($data as $key=>$val){
+                if(!in_array($key,$fields)) {
+                    unset($data[$key]);
+                }
+            }
+        }
+        //这里存在一个数据的自动验证，准备写一个数据验证类
+        // do.....
+        //这里还有一个自动填充
+        // do.....
+        // 赋值当前数据对象
+        $this->data = $data;
+        // 返回创建的数据以供其他调用
+        return $data;
+    }
+
+    /**
+     * 处理字段映射
+     * @access public
+     * @param array $data 当前数据
+     * @param integer $type 类型 0 写入 1 读取
+     * @return array
+     */
+    private function setFieldMap($data,$type=0) {
+        //字段映射的处理（传递的数据字段 ==>  对应的表的字段）
+        if(!empty($this->map)) {
+            foreach ($this->map as $key=>$val){
+                //1读取，要把表的字段转为设定的字段记录值
+                if($type==1) { 
+                    if(isset($data[$val])) {
+                        $data[$key] =   $data[$val];
+                        unset($data[$val]);
+                    }
+                }else{
+                    //0写入，要把数据的字段转为表的字段记录值
+                    if(isset($data[$key])) {
+                        $data[$val] =   $data[$key];
+                        unset($data[$key]);
+                    }
+                }
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * 启动事务
+     * @access public
+     * @return void
+     */
+    public function startTrans() {
+        $this->commit();
+        $this->db->startTrans();
+        return ;
+    }
+
+    /**
+     * 提交事务
+     * @access public
+     * @return boolean
+     */
+    public function commit() {
+        return $this->db->commit();
+    }
+
+    /**
+     * 事务回滚
+     * @access public
+     * @return boolean
+     */
+    public function rollback() {
+        return $this->db->rollback();
+    }
+
+    
 }
