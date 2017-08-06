@@ -43,6 +43,16 @@ class Controller{
 		$this->smarty->display($html);
 	}
 
+	/**
+     * 魔术方法__call
+     * @param  [type] $method 方法
+     * @param  [type] $args   参数
+     * @return 
+     */
+    public function __call($method,$args){
+     	throw new \Exception('method not exists:'.$method, 1);      
+    }
+
 
 
 }

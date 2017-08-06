@@ -8,21 +8,25 @@ class Config{
 	protected static $config = [];  //配置数组
 
 	//加载所有配置文件
-	public static function get($field=""){
+	public static function get($name=""){
 		//加载系统配置文件
 		$sys_config = require config_file;
 		//加载用户配置文件
 		$user_config = require load_config_file;
 		//合并配置
 		self::$config = array_merge($sys_config,$user_config);
-		if($field==""){
+		if($name==""){
 			return self::$config;
 		}else{
-			if(array_key_exists($field,self::$config)){
-				return self::$config[$field];
-			}else{
-				return '';
-			}	
+			if (!strpos($name, '.')) {	//不带点的一个值
+	            $name = strtolower($name);
+	            return isset(self::$config[$name]) ? self::$config[$name] : null;
+	        } else {
+	            // 二维数组设置和获取支持
+	            $name    = explode('.', $name, 2);
+	            $name[0] = strtolower($name[0]);
+	            return isset(self::$config[$name[0]][$name[1]]) ? self::$config[$name[0]][$name[1]] : null;
+	        }
 		}
 		
 	}

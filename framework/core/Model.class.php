@@ -26,7 +26,7 @@ class Model{
     protected $lastId			=	'';
     // 字段信息
     protected $fields           =   array();
-    protected $tableFields           =   array();
+    protected $tableFields      =   array();
     // 数据信息(用于增加和修改)
     protected $data             =   array();
     // 查询表达式参数
@@ -52,7 +52,7 @@ class Model{
 
         //获取表名
         if(empty($tablename) && empty($this->tableName)){
-        	throw new \Exception("未传递表名称", 1);   
+        	throw new \Exception("table not Found:", 1);   
         }elseif(!empty($tablename)){
             $this->tableName = $tablename;
         }
@@ -80,6 +80,16 @@ class Model{
     }
 
     /**
+     * 魔术方法__call
+     * @param  [type] $method 方法
+     * @param  [type] $args   参数
+     * @return 
+     */
+    public function __call($method,$args){
+        throw new \Exception('method not exists:'.$method, 1);      
+    }
+
+    /**
      * 获取主键
      * @param  [type] $f 字段信息
      * @return [type]
@@ -91,7 +101,7 @@ class Model{
             }
         }
     }
-
+    
     /**
      * 是否强制重新连接
      * @param  boolean $force [description]
@@ -138,7 +148,7 @@ class Model{
      */
     public function field($field=false){
     	if(empty($field)){
-    		throw new \Exception("字段信息不能为空", 1);
+    		throw new \Exception("where express error:field", 1);
     	}
     	if($field=="*"){	//全部
     		$files = implode(',',$this->tableFields);
@@ -147,7 +157,7 @@ class Model{
     		$f = explode(",",$field);
     		foreach ($f as $key => $val) {
     			if(!in_array($val,$this->tableFields)){
-    				throw new \Exception($val."字段不存在", 1);
+    				throw new \Exception("fields not exists:".$val, 1);
     			}
     		}
     	}
@@ -162,21 +172,19 @@ class Model{
      * @return [type]        [description]
      */
     public function where($where=false){
-    	if(empty($where)){
-    		throw new \Exception("查询条件不能为空", 1);
-    	}
-    	//判断是不是字符串
-    	if(is_string($where) && '' != $where){
-            throw new \Exception("请使用数组传递条件", 1);
-    		//$this->options['where']  .="and ". $this->db->escapeString($where)." ";
+    	if(empty($where) || (is_string($where) && '' != $where)){
+    		throw new \Exception("where express error:where", 1);
     	}
     	//是数组
     	if(is_array($where)){
     		foreach ($where as $k => $v) {
                 if(!in_array($k,$this->tableFields)){
-                    throw new \Exception("条件".$k."字段不存在", 1);
+                    throw new \Exception("fields not exists:".$k, 1);
                 }
-    			@$this->options['where'] .= "and ". $k . $v[0] .$this->db->escapeString($v[1])." ";
+                if(!isset($this->options['where'])){
+                    $this->options['where']="";
+                }
+    			$this->options['where'] .= "and ". $k . $v[0] .$this->db->escapeString($v[1])." ";
     		}
     	}
     	return $this;
@@ -189,13 +197,13 @@ class Model{
      */
     public function group($group=false){
     	if(empty($group)){
-    		throw new \Exception("分组条件不能为空", 1);
+    		throw new \Exception("where express error:group", 1);
     	}
     	//判断是不是字符串
     	if(is_string($group) && '' != $group){
     		//判断字段是否存在
 			if(!in_array($group,$this->tableFields)){
-				throw new \Exception("分组".$group."字段不存在", 1);
+				throw new \Exception("fields not exists:".$group, 1);
 			}
     		$this->options['group'] = $group;
     	}
@@ -209,14 +217,14 @@ class Model{
      */
     public function order($order=false){
     	if(empty($order)){
-    		throw new \Exception("排序条件不能为空", 1);
+    		throw new \Exception("where express error:order", 1);
     	}
     	//判断是不是字符串
     	if(is_string($order) && '' != $order){
     		//判断字段是否存在
     		$o = explode(" ",$order)[0];
 			if(!in_array($o,$this->tableFields)){
-				throw new \Exception("排序".$o."字段不存在", 1);
+				throw new \Exception("fields not exists:".$o, 1);
 			}
     		$this->options['order'] = $order;
     	}
@@ -232,9 +240,9 @@ class Model{
      */
     public function limit($offset,$length=null){
         if(is_null($length) && strpos($offset,',')){
-            list($offset,$length)   =   explode(',',$offset);
+            list($offset,$length) = explode(',',$offset);
         }
-        $this->options['limit']     =   intval($offset).( $length? ','.intval($length) : '' );
+        $this->options['limit'] = intval($offset).( $length? ','.intval($length) : '' );
         return $this;
     }
 
@@ -479,14 +487,14 @@ class Model{
      */
     public function getField($field=false,$char=null){
     	if(empty($field)){
-    		throw new \Exception("字段不能为空", 1);
+    		throw new \Exception("argumet not exists:", 1);
     	}
     	//判断存在不存在
     	$field  =  trim($field);
     	$f = explode(",",$field);
 		foreach ($f as $key => $val) {
 			if(!in_array($val,$this->tableFields)){
-				throw new \Exception($val."字段不存在", 1);
+				throw new \Exception("fields not exists:".$val, 1);
 			}
 		}
 		$this->options['field']   =   $field;
@@ -529,7 +537,7 @@ class Model{
     			$data = $this->data;
     			$this->data = []; 
     		}else{
-    			return false;
+    			throw new \Exception("miss data to insert:", 1);
     		}
     	}
     	//分析表达式
@@ -557,14 +565,13 @@ class Model{
     			$data = $this->data;
     			$this->data = []; 
     		}else{
-    			return false;
+    			throw new \Exception("miss data to update:", 1);
     		}
     	}
-
         //判断主键值或者where条件是否存在
 
         if(!isset($op['where']) && !array_key_exists($this->pk,$data) && empty($options)){
-        	throw new \Exception("缺少必要条件！！", 1);
+        	throw new \Exception("miss update condition:", 1);
         }
     	//数据的过滤(字段筛选和字符串过滤)
         $data = $this->create($data);
@@ -575,7 +582,7 @@ class Model{
             if(array_key_exists($this->pk,$options)){
                 $this->where($options);
             }else{
-                throw new \Exception("缺少必要条件！！", 1);
+                throw new \Exception("miss update condition:", 1);
             }
         }  
          //分析表达式
@@ -608,7 +615,6 @@ class Model{
         }
         // 如果现在还没数据或者数据不是数组,直接返回错误
         if(empty($data) || !is_array($data)) {
-            throw new \Exception("数据有误，请确认！", 1);
             return false;
         }
         //检查字段映射，防止过滤了应该存在的数据

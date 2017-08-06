@@ -2,6 +2,8 @@
 
 use core\Config;
 use core\Request;
+use core\Session;
+use core\Error;
 
 //初始化app类
 class App{
@@ -12,13 +14,14 @@ class App{
 	public static function run(){
 		//注册自动加载
 		spl_autoload_register('self::autoload');
+		//开启日志
+		
 		//注册错误和异常处理
-
+		Error::register();
 		//加载配置文件
 		self::loadConfig();
-
-		//处理一些配置的事
-
+		//开启session
+		Config::get('session.auto_start') && Session::start();
 		//路由分发处理
 		self::exec();
 	}
@@ -33,12 +36,29 @@ class App{
 		Request::instance()->route();
 		//获取分组，模块，方法
 		$module = Request::instance()->module();
+		if(!in_array($module,Config::get('module_list'))){
+			(new \core\Emptys())->_empty($module,"module not exists");			
+		}
 		$controller = Request::instance()->controller();
 		$action = Request::instance()->action();
 		//定义命名空间
 		$namespace = '\\'.Config::get('app_namespace').'\\'.strtolower($module).'\\controller\\'.ucfirst($controller);
-		$class = new $namespace();
-		$class->$action();
+		if(class_exists($namespace)){
+			$class = new $namespace();
+			$class->$action();
+		}else{
+			//这里加载空类(用户定义用用户的，没有用系统的)
+			if($empty = Config::get('empty_controller')){
+				$space = substr($namespace,0,strrpos($namespace,'\\')+1).$empty;
+				if(class_exists($space)){
+					//调用方法
+					(new $space())->_empty();
+				}
+			}
+			//调用系统的空类
+			(new \core\Emptys())->_empty($namespace,"controller not exists");			
+		}
+		
 	} 
 
 	/**

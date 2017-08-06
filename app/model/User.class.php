@@ -36,12 +36,16 @@ class User extends Model{
 		$res = $this->update($data);	
 		//$res = $this->update($data,['idsss'=>['>',1]]);	
 
-		var_dump($res);
+		// var_dump($res);
 
-		var_dump($this->getLastInsID());
-		var_dump($this->getLastSql());
+		// var_dump($this->getLastInsID());
+	 var_dump($this->getLastSql());
 
 
+	}
+
+	public function a(){
+		//new userssssssssss();
 	}
 
 	

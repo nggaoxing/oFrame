@@ -21,6 +21,8 @@ define('func_path',frame_path."common/");			//系统函数文件目录
 
 define('load_func_file',load_func_path."function.php");			//用户函数文件
 define('func_file',func_path."function.php");			//系统函数文件
+define('error_file',frame_path."tpl/error.php");	//错误信息提示文件
+define('error_lang',frame_path."lang/zh.php");	//定义错误语言包
 
 //加载模板类
 require_once frame_path."org\Libs\Smarty.class.php";
