@@ -24,7 +24,7 @@ function array_map_recursive($filter, $data) {
  * @return [type]        [description]
  */
 function lang($field=""){
-	$lang = require error_lang;
+	$lang = require ERROR_LANG;
 	if($field==""){
 		return $lang;
 	}else{

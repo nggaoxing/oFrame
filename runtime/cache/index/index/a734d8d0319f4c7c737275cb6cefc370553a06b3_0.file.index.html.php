@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-08-05 13:58:34
+/* Smarty version 3.1.29, created on 2017-08-07 12:04:02
   from "C:\myphp\apache\htdocs\OopFrame\view\index\index\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_59855e8a3256a3_03665807',
+  'unifunc' => 'content_5987e6b2943393_66513684',
   'file_dependency' => 
   array (
     'a734d8d0319f4c7c737275cb6cefc370553a06b3' => 
     array (
       0 => 'C:\\myphp\\apache\\htdocs\\OopFrame\\view\\index\\index\\index.html',
-      1 => 1501912711,
+      1 => 1502078609,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_59855e8a3256a3_03665807 ($_smarty_tpl) {
+function content_5987e6b2943393_66513684 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +66,7 @@ function content_59855e8a3256a3_03665807 ($_smarty_tpl) {
             <div class="content">
                 <div class="title"><?php echo $_smarty_tpl->tpl_vars['welcome']->value;?>
 </div>
-                <div class="title2">作者：高兴</div>
+                <div class="title2">水煮鱼</div>
             </div>
         </div>
     </body>

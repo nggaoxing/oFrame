@@ -7,12 +7,12 @@ class User extends Validate{
 
 	//创建验证规则
 	protected $rules = [
-    	'username'  =>  'require|max:4|min:3',
+    	'username'  =>  'min:',
     	'phone'  =>  'require|number|length:11',
     	'email'  =>  'require|email',
     	'address'  =>  'require|max:200',
     	'password'=>'require|length:6,14',
-    	'id'=>'require|notIn:28,29',
+    	'id'=>'require|notIn:',
     	'url' => 'require|url'
 		];
 

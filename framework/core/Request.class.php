@@ -8,6 +8,7 @@ class Request{
 	//属性
 	protected static $instance;	//实例对象
 	protected $path_info;  	//PATH_INFO
+	protected $host;		//主机地址
 	protected $path_style;  //PATH_INFO模式
 	protected $module;  	//module
 	protected $controller; 	//controller
@@ -48,6 +49,22 @@ class Request{
 	}
 
 	/**
+	 * 获取url地址
+	 * @return [type] [description]
+	 */
+	public function url(){
+		return $this->path_info;
+	}
+
+	/**
+	 * 获取主机地址
+	 * @return [type] [description]
+	 */
+	public function host(){
+		return $this->host;
+	}
+
+	/**
 	 * 获取传递的参数
 	 * @return [type] [description]
 	 */
@@ -66,6 +83,8 @@ class Request{
 		if(empty($this->path_info)){
 			//设置path_info
 			$this->path_info = empty($_SERVER['PATH_INFO']) ? '/' : ltrim($_SERVER['PATH_INFO'], '/');
+			//设置主机
+			$this->host = $_SERVER['HTTP_HOST'];
 			//根据pathinfo的模式截取信息
 			if($this->path_style == 1){
 				//基础模式
@@ -80,9 +99,9 @@ class Request{
 					//重写模式
 					$arr_path = explode('/',$this->path_info);
 					//控制器，分组，方法
-					$this->module = isset($arr_path[0]) ? $arr_path[0] : Config::get('default_module') ;unset($arr_path[0]);
-					$this->controller = isset($arr_path[1]) ? $arr_path[1] : Config::get('default_controller');unset($arr_path[1]);
-					$this->action = isset($arr_path[2]) ? $arr_path[2] : Config::get('default_action');unset($arr_path[2]);
+					$this->module = isset($arr_path[0]) ? strtolower($arr_path[0]) : Config::get('default_module') ;unset($arr_path[0]);
+					$this->controller = isset($arr_path[1]) ? strtolower($arr_path[1]) : Config::get('default_controller');unset($arr_path[1]);
+					$this->action = isset($arr_path[2]) ? strtolower($arr_path[2]) : Config::get('default_action');unset($arr_path[2]);
 					//参数
 					foreach ($arr_path as $k => $v) {
 						if(isset($arr_path[$k]) && isset($arr_path[$k+1])){

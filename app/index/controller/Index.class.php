@@ -13,20 +13,27 @@ use core\Cookie;
 class Index extends Controller{
 
 	public function index(){
+$db = new UserModel();
+		//$db->field('id,username')->create($data);
+		//$data = $db->create($data);
+$data = $db->query('SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user limit 1');		
 		$this->assign('welcome',"欢迎使用of框架");
-		$this->display('index.html');
+		$this->redirect('/index/index/db');
 	}
 
 	public function user(){
 		$user = new UserModel();
 //		$a = ['b'=>'sss'];
-//echo ();
+echo sss();
 		$user->getUserssList();
 	}
 
 	public function db(){
-		new Model();
-require('s');
+		//new Model();
+		//die('跳转');
+echo $a;
+//require('s');
+//echo sss();
 		$where['id'] = array('>',1);
 		$where2['id'] = array('<',1000);
 
@@ -34,8 +41,8 @@ require('s');
 		$db = new UserModel();
 
 		//$db->username="撒飒飒";
-		$res = $db->field('id,usesrname')->where($where)->where($where2)->group('status')->order('ids desc')->limit(0,4)->select();
-//$db->getField('sss');
+		$res = $db->select();
+//$db->getField();
 		// var_dump($res);
 		// // var_dump($db->username);
 		// var_dump($db->getLastSql());
@@ -54,13 +61,13 @@ require('s');
 			'aaa'=>'阿萨',
 		];
 		// $db->setPk('ids');
-		// //$res = $db->insert($data);	
-		// //$res = $db->where(['id'=>['>',1]])->update($data);	
+		$res = $db->insert($data);	
+//$res = $db->where()->update($data);	
 		//$res = $db->update($data);	
-		$res = $db->update();	
-
-		var_dump($res);
-
+		//$res = $db->update();	
+echo $a;
+		//var_dump($res);
+echo sss();
 		var_dump($db->getLastInsID());
 		var_dump($db->getLastSql());
 	}
@@ -81,13 +88,13 @@ require('s');
 			'eeee'=>'大发',
 			'aaa'=>'阿萨',
 		];
-		var_dump($data);
+	//	var_dump($data);
 		// $data = Request::instance()->param();
 		$db = new UserModel();
 		//$db->field('id,username')->create($data);
-		$data = $db->create($data);
-
-		// $data = Request::instance()->input();
+		//$data = $db->create($data);
+$data = $db->query('SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user limit 1');
+	//$data = Request::instance()->input();
 		// $data = Request::instance()->input('post.','沙和尚');
 		// $data = Request::instance()->input('post.aaa','第三方的');
 		// $data = Request::instance()->input('post.bbb');
@@ -105,7 +112,7 @@ require('s');
  var_dump($data );
 // //echo $data['user']['a'];
 
-		$this->display('data.html');
+		//$this->display('data.html');
 	}
 
 	public function validate(){
@@ -127,7 +134,9 @@ require('s');
 		$data = $db->create($data);
 		
 		$UserValidate = new UserValidate();
+//dd('sss');
 		$result = $UserValidate->checkAll(true)->scene('add')->check($data);
+// dd('dai');
 // 		$rules = [
 //     	'username'  =>  'require|max:40|min:3',
 //     	'phone'  =>  'number|length:11',
@@ -198,6 +207,11 @@ dd($UserValidate->error);
 		 dd(Cookie::has('email','of3_'));
 
 		dd($_COOKIE);
+	}
+
+	public function _empty($method){
+
+		echo "您输入的方法不存在";
 	}
 	
 

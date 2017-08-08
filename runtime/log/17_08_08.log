@@ -1,0 +1,407 @@
+[ 2017-08-08 18:55:30 ] www.of.com index/index/user
+SQL: SHOW COLUMNS FROM `sx_user`
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:27
+
+
+[ 2017-08-08 18:55:40 ] www.of.com index/index/db
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502189740','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+
+
+[ 2017-08-08 19:04:10 ] www.of.com index/index/db
+INFO: [ APP_START ]SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190250','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69INFO: [ APP_END ]
+
+[ 2017-08-08 19:04:47 ] www.of.com index/index/db
+INFO: [ APP_START ]
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190287','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+INFO: [ APP_END ]
+
+[ 2017-08-08 19:05:33 ] www.of.com index/index/db
+INFO: [ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190333','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+INFO: [ APP_END ]-------------
+
+[ 2017-08-08 19:06:25 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190385','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:07:27 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190447','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+INFO: -------------[ APP_END ]-------------RUN: 
+
+[ 2017-08-08 19:08:14 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190494','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69RUN: -0.042534
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:09:07 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190547','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 0.049653
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:09:07 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190547','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 0.092105
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:09:54 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190594','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 1502190594.0386
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:09:56 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190596','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 1502190596.0367
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:11:33 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190693','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 0.035291910171509
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:11:33 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190693','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 0.10713601112366
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:12:45 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190765','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUN: 0.045516
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:13:08 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190788','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.029735
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:13:08 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190788','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.117946
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:15:07 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190907','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.047111
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:15:13 ] www.of.com /
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user limit 1
+RUNTIME: 0.202221
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:16:06 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190966','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.029770
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:16:08 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502190968','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.065979
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:16:54 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502191014','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.038819
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:16:54 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+SQL: SHOW COLUMNS FROM `sx_user`
+SQL: SELECT id,username,password,email,uid,create_time,status,face,token,token_time,last_time,addpoints,app_id,head_pic FROM sx_user
+SQL: INSERT INTO sx_user (name,pass,email,uid,create_time,statussssss,isssd,hgf,eeee,aaa) VALUES ('测试','asasadsdsafsasas','99999@qq.com','U9999','1502191014','1','lllllll','eqwe','大发','阿萨')
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:67
+FAT: Call to undefined function app\index\controller\sss()	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:69
+RUNTIME: 0.032793
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:17:16 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+RUNTIME: 0.025691
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:19:38 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:33
+RUNTIME: 0.017613
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:20:33 ] www.of.com index/index/db
+INFO: -------------[ APP_START ]-------------
+ERR: 未定义变量Undefined variable: a	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:34
+RUNTIME: 0.039364
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:23:27 ] www.of.com index/cc/db
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Cc
+RUNTIME: 0.017631
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:23:41 ] www.of.com index/index/ss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:ss
+RUNTIME: 0.021343
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:24:22 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.045169
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:24:54 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.019730
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:24:54 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.017287
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:25:10 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.026587
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:25:41 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.025985
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:25:49 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.017051
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:25:50 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.023976
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:25:50 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.015720
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:26:06 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.019612
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:26:06 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.029399
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:26:07 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.017237
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:26:07 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.019725
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:26:07 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.020222
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:26:31 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.023576
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:27:00 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.025449
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:27:11 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 控制器不存在controller not exists:\app\index\controller\Indsex
+RUNTIME: 0.020112
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:27:56 ] www.of.com index/indsex/sssss
+INFO: -------------[ APP_START ]-------------
+FAT: Call to undefined method app\index\controller\Enpty::_empty()	FILE：C:\myphp\apache\htdocs\OopFrame\framework\core\App.class.php LINE:57
+RUNTIME: 0.015254
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:31:30 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:sssss
+RUNTIME: 0.030303
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:36:31 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:sssss
+RUNTIME: 0.023746
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:36:32 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:sssss
+RUNTIME: 0.021079
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:36:33 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:sssss
+RUNTIME: 0.021052
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:38:50 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:sssss
+RUNTIME: 0.104922
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:40:03 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+EXC: 方法不存在method not exists:sssss
+RUNTIME: 0.022907
+INFO: -------------[ APP_END ]-------------
+
+[ 2017-08-08 19:42:04 ] www.of.com index/index/sssss
+INFO: -------------[ APP_START ]-------------
+ERR: 未定义变量Undefined variable: method	FILE：C:\myphp\apache\htdocs\OopFrame\app\index\controller\Index.class.php LINE:213
+RUNTIME: 0.018942
+INFO: -------------[ APP_END ]-------------
+

@@ -10,9 +10,9 @@ class Config{
 	//加载所有配置文件
 	public static function get($name=""){
 		//加载系统配置文件
-		$sys_config = require config_file;
+		$sys_config = require CONFIG_FILE;
 		//加载用户配置文件
-		$user_config = require load_config_file;
+		$user_config = require LOAD_CONFIG_FILE;
 		//合并配置
 		self::$config = array_merge($sys_config,$user_config);
 		if($name==""){
@@ -33,7 +33,7 @@ class Config{
 
 	//加载数据库配置文件
 	public static function db(){
-		$db_config = require database_file;
+		$db_config = require DATABASE_FILE;
 		return $db_config;
 	}
 

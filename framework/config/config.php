@@ -7,7 +7,7 @@ return [
 	'default_module' => 'home',	//模块
 	'default_controller' => 'index',		//控制器
 	'default_action' => 'index',	//方法
-    'empty_controller' => '',  //默认的空控制器
+    'empty_controller' => 'Enpty',  //默认的空控制器
     'module_list' => ['index','admin'], //现有的模块
 
 	/******path模式*******/
@@ -54,6 +54,14 @@ return [
         'setcookie' => true,
     ],
 
+    /*******日志设置***********/
+    'log_record'            =>  true,   // 默认不记录日志
+    'log_type'              =>  'File', // 日志记录类型 默认为文件方式
+    'log_level'             =>  'SQL,EXC,ERR,FAT',// 允许记录的日志级别()
+    'log_file_size'         =>  2097152,    // 日志文件大小限制
+    'log_path'              =>  'runtime/log/',
+    /*******错误提示设置**********/
+    'error_reporting'   => 'E_NOTICE,E_WARNING,E_ALL',
    
 
 

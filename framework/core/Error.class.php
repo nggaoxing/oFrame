@@ -3,6 +3,16 @@ namespace core;
 
 //错误异常处理
 class Error{
+	//错误级别
+	protected static $errNo = [
+		'E_WARNING'	=>	2,
+		'E_NOTICE'	=>	8,
+		'E_USER_ERROR'	=>	256,
+		'E_USER_WARNING'	=>	512,
+		'E_USER_NOTICE'	=>	1024,
+		'E_RECOVERABLE_ERROR'	=>	4096,
+		'E_ALL'	=>	8191,
+	];
 
 	/**
 	 * 错误，异常处理注册
@@ -28,17 +38,34 @@ class Error{
 	 * @return 
 	 */
 	public static function ofError($errno,$errstr,$errfile,$errline){
+		//根据配置查询现在可以显示的错误信息
+		$errReport = \core\Config::get('error_reporting');
+		$errReport = explode(',',$errReport);
+		foreach ($errReport as $key => $val) {
+			if(array_key_exists($val,self::$errNo)){
+				$report[]=self::$errNo[$val];
+			}
+		}
+		//获取信息并截取
 		$lang = self::getLang($errstr);
 		if($lang){
-			$val = substr($errstr,strpos($errstr,":")) ? substr($errstr,strpos($errstr,":")) : '';
-			$err['title'] = $lang.$val;
+			//$val = substr($errstr,strpos($errstr,":")) ? substr($errstr,strpos($errstr,":")) : '';
+			$err['title'] = $lang.$errstr;
 		}else{
 			$err['title'] = $errstr;
 		}
 		$err['file']  = $errfile;
         $err['line']  = $errline;
         $err['trace']  = '';
-		self::halt($err);
+        //写入日志数据
+        Log::addLog($err['title']."	FILE：".$err['file']." LINE:".$err['line'],'ERR');
+        //这里根据可以报错的设置显示页面
+        if(in_array($errno,$report)){
+        	//显示页面
+			self::halt($err);
+        }else{
+        	return;
+        }
 	}
 
 	/**
@@ -65,14 +92,17 @@ class Error{
 		$message = $e->getMessage();
 		$lang = self::getLang($message);
 		if(isset($lang)){
-			$val = substr($message,strpos($message,":")+1) ? substr($message,strpos($message,":")) : '';
-			$err['title'] = $lang.$val;
+			//$val = substr($message,strpos($message,":")+1) ? substr($message,strpos($message,":")) : '';
+			$err['title'] = $lang.$message;
 		}else{
 			$err['title'] = $message;
 		}
 		$err['file']  = $e->getFile();
         $err['line']  = $e->getLine();
         $err['trace']  = self::treeTrace($e->getTrace());
+        //写入日志数据
+        Log::addLog($err['title'],'EXC');
+        //显示页面
 		self::halt($err);
 	}
 
@@ -116,6 +146,9 @@ class Error{
 				$err['title'] = $err['message'];
 			}
         	$err['trace'] = '';
+        	//写入日志数据
+	        Log::addLog($err['title']."	FILE：".$err['file']." LINE:".$err['line'],'FAT');
+	        //显示页面
 			self::halt($err);
 		}
 		
@@ -127,8 +160,9 @@ class Error{
      * @return void
      */
    public static function halt($err){
-
-    	include error_file;
+    	include ERROR_FILE;
+    	//日志记录
+		Config::get('log_record') && \core\Log::save();
     	exit();
     }
 

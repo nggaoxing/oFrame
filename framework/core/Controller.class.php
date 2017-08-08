@@ -41,6 +41,8 @@ class Controller{
 	 */
 	public function display($html){
 		$this->smarty->display($html);
+		//日志记录
+		Config::get('log_record') && \core\Log::save();
 	}
 
 	/**
@@ -50,8 +52,42 @@ class Controller{
      * @return 
      */
     public function __call($method,$args){
-     	throw new \Exception('method not exists:'.$method, 1);      
+    	//检测有没有_empty的方法
+    	if(method_exists($this,'_empty')){
+    		$this->_empty($method,$args);
+    	}else{
+    		throw new \Exception('method not exists:'.$method, 1);      
+    	}
     }
+
+    /**
+	 * 页面重定向方法
+	 * @param	$url		重定向的页面地址
+	 * @param 	$message	页面跳转的提示信息
+	 * @param 	$time	页面停留时间
+	 * @return 	无  		结果是跳转重定向
+	*/
+	public function redirect($url,$message='',$time=2){
+		if($message == ''){
+			header('location:'.$url);
+		}else{
+			//跳转
+			echo <<<HTML
+				<HTML>
+				 <HEAD>
+				  <TITLE> 提示：$message </TITLE>
+				  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+				  <META HTTP-EQUIV="Refresh" CONTENT="$time; url=$url" target="all"/>
+				 </HEAD>
+				 <BODY>
+					$message
+				 </BODY>
+				</HTML>
+HTML;
+			
+		}
+		die;
+	}
 
 
 

@@ -126,7 +126,8 @@ class Model{
      * @return mixed
      */
     public function query($sql) {
-        return $this->db->db_query($sql);
+        return $this->db->fetchAll($sql);
+     
     }
 
     /**
@@ -135,7 +136,7 @@ class Model{
      * @return false | integer
      */
     public function execute($sql) {
-        return $this->db->db_exec($sql);
+        return $this->db->affectRow($sql);
     }
 
 

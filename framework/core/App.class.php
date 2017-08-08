@@ -46,13 +46,15 @@ class App{
 		if(class_exists($namespace)){
 			$class = new $namespace();
 			$class->$action();
+
 		}else{
 			//这里加载空类(用户定义用用户的，没有用系统的)
 			if($empty = Config::get('empty_controller')){
 				$space = substr($namespace,0,strrpos($namespace,'\\')+1).$empty;
+
 				if(class_exists($space)){
 					//调用方法
-					(new $space())->_empty();
+					(new $space())->_empty();exit();
 				}
 			}
 			//调用系统的空类
@@ -75,10 +77,10 @@ class App{
 				$file = ROOT.$classname.".class.php";
 			}elseif(explode('/',$classname)[0] == 'core'){
 				//核心类
-				$file = frame_path.$classname.".class.php";
+				$file = FRAME_PATH.$classname.".class.php";
 			}elseif(explode('/',$classname)[0] == 'org'){
 				//扩展类
-				$file = frame_path.$classname.".class.php";
+				$file = FRAME_PATH.$classname.".class.php";
 			}
 			if(file_exists($file)){
 				include_once($file);

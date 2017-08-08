@@ -96,7 +96,7 @@ class Validate{
     public function scene($scene=false){
     	//必须传值
     	if(!$scene){
-    		throw new \Exception("未传递验证场景的值", 1);
+    		throw new \Exception("argumet not exists:scene", 1);
     	}
     	//判断传递的值
     	if(is_array($scene)){//数组
@@ -104,8 +104,8 @@ class Validate{
     		$this->rules = $scene;
     	}elseif(is_string($scene)){//字符串
     		//'add' => 'username,phone,email',这种形式,传入的是add
-    		if(!@$this->scene[$scene]){
-    			throw new \Exception("验证场景不存在", 1);
+    		if(!isset($this->scene[$scene])){
+    			throw new \Exception("scene not exists", 1);
     		}
 			$fields = explode(',',$this->scene[$scene]);
     		foreach ($fields as $k => $field) {
@@ -314,7 +314,7 @@ class Validate{
     protected function checkIn($value,$r_value,$type){
     	//判断存在不存在$r_value
     	if(empty($r_value)){
-    		throw new \Exception($type."规则格式定义错误", 1);
+    		throw new \Exception("rule format definition error:".$type, 1);
     	}
     	//判断规则附加值
 		$ins = explode(',',$r_value);
@@ -336,12 +336,12 @@ class Validate{
     protected function checkBetween($value,$r_value,$type){
     	//判断存在不存在$r_value
     	if(empty($r_value) || !strpos($r_value, ',')){
-    		throw new \Exception($type."规则格式定义错误", 1);
+    		throw new \Exception("rule format definition error:".$type, 1);
     	}
     	//判断规则附加值
 		list($min,$max) = explode(',',$r_value);
 		if(!is_numeric($min) || !is_numeric($max) || $min >= $max){
-			throw new \Exception($type."规则格式定义错误", 1);
+			throw new \Exception("rule format definition error:".$type, 1);
 		}else{
 			//根据类型判断
 			if($type == 'between'){
@@ -389,7 +389,7 @@ class Validate{
     protected function max($value,$r_value){
     	//判断存在不存在$r_value
     	if(empty($r_value) || $r_value <= 0){
-    		throw new \Exception("max规则格式定义错误", 1);
+    		throw new \Exception("rule format definition error:max", 1);
     	}
     	//判断长度
     	$length = mb_strlen($value,Config::get('default_charset'));
@@ -408,7 +408,7 @@ class Validate{
     protected function min($value,$r_value){
     	//判断存在不存在$r_value
     	if(empty($r_value) || $r_value <= 0){
-    		throw new \Exception("min规则格式定义错误", 1);
+    		throw new \Exception("rule format definition error:min", 1);
     	}
     	//判断长度
     	$length = mb_strlen($value,Config::get('default_charset'));
@@ -427,7 +427,7 @@ class Validate{
     protected function length($value,$r_value){
     	//判断存在不存在$r_value
     	if(empty($r_value) || $r_value <= 0){
-    		throw new \Exception("length规则格式定义错误", 1);
+    		throw new \Exception("rule format definition error:length", 1);
     	}
     	//判断长度
     	$length = mb_strlen($value,Config::get('default_charset'));
@@ -435,7 +435,7 @@ class Validate{
     	if(strpos($r_value, ',')){  //length:6,15
     		list($min,$max) = explode(',',$r_value);
     		if(!is_numeric($min) || !is_numeric($max) || $min >= $max){
-				throw new \Exception("length规则格式定义错误", 1);
+				throw new \Exception("rule format definition error:length", 1);
 			}
     		return $length >= $min && $length <= $max;  //都成立真
     	}

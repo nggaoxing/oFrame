@@ -1,6 +1,7 @@
 <?php
 
 namespace core;
+use core\Log;
 
 //pdo方式
 class Db{
@@ -83,13 +84,11 @@ class Db{
 
 	//执行sql语句的方法(query)
 	public function db_query($sql=''){
+		Log::addLog($sql,'SQL');
 		//执行sql语句
 		$res=$this->pdo->query($sql);
 		//判断
 		if(!$res){
-			//echo '语句错误: <br/>';
-            //echo '错误编号:' . $this->pdo->errorCode().'<br/>';
-            echo '错误内容:' . $this->pdo->errorInfo()[2].'<br/>';
             throw new \Exception($this->pdo->errorInfo()[2], 1);
             exit;
 		}
@@ -100,6 +99,7 @@ class Db{
 	
 	//执行sql语句的方法(exec)
 	public function db_exec($sql=''){
+		Log::addLog($sql,'SQL');
 		//执行sql语句
 		$res=$this->pdo->exec($sql);
 		//判断(表示完全错误的情况下才会返回信息。0也可以表示操作成功，但没有行数影响)
